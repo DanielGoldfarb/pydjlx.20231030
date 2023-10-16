@@ -12,7 +12,18 @@ const plugin: JupyterFrontEndPlugin<void> = {
   autoStart: true,
   activate: (app: JupyterFrontEnd) => {
     console.log('JupyterLab extension pydjlx is activated!');
+    let commandId = 'pydjlx:Hello';
+    app.commands.addCommand(commandId,
+      { label: 'Hello World',
+        execute: say_hello
+      });
+
+    app.commands.execute(commandId);
   }
 };
+
+function say_hello() {
+  console.log('pydjlx says "Hello World!"');
+}
 
 export default plugin;
