@@ -3,6 +3,8 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
+import { ICommandPalette } from '@jupyterlab/apputils'
+
 /**
  * Initialization data for the pydjlx extension.
  */
@@ -10,7 +12,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
   id: 'pydjlx:plugin',
   description: 'A JupyterLab extension demo for PyData',
   autoStart: true,
-  activate: (app: JupyterFrontEnd) => {
+  requires: [ ICommandPalette ],
+  activate: (app:     JupyterFrontEnd,
+             palette: ICommandPalette ) => {
     console.log('JupyterLab extension pydjlx is activated!');
     let commandId = 'pydjlx:Hello';
     app.commands.addCommand(commandId,
@@ -18,7 +22,10 @@ const plugin: JupyterFrontEndPlugin<void> = {
         execute: say_hello
       });
 
-    app.commands.execute(commandId);
+    palette.addItem(
+      { command: commandId,
+        category: 'Anything'
+      });
   }
 };
 
