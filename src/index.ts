@@ -13,21 +13,23 @@ const plugin: JupyterFrontEndPlugin<void> = {
   description: 'A JupyterLab extension demo for PyData',
   autoStart: true,
   requires: [ ICommandPalette ],
-  activate: (app:     JupyterFrontEnd,
-             palette: ICommandPalette ) => {
-    console.log('JupyterLab extension pydjlx is activated!');
-    let commandId = 'pydjlx:Hello';
-    app.commands.addCommand(commandId,
-      { label: 'Hello World',
-        execute: say_hello
-      });
+  activate: _activate
+}
 
-    palette.addItem(
-      { command: commandId,
-        category: 'Anything'
-      });
-  }
-};
+function _activate(app:     JupyterFrontEnd,
+                   palette: ICommandPalette ) {
+  console.log('JupyterLab extension pydjlx is activated!');
+  let commandId = 'pydjlx:Hello';
+  app.commands.addCommand(commandId,
+    { label: 'Hello World',
+      execute: say_hello
+    });
+
+  palette.addItem(
+    { command: commandId,
+      category: 'Anything'
+    });
+}
 
 function say_hello() {
   console.log('pydjlx says "Hello World!"');
