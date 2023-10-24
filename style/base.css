@@ -4,8 +4,11 @@
     https://jupyterlab.readthedocs.io/en/stable/developer/css.html
 */
 
-.hww body {
+.html, body, .hww {
    height: 100%;
+}
+
+.hww body {
    position: relative;
    text-align: center;
    background-color: teal;
@@ -17,4 +20,16 @@
    left: 0;
    right: 0;
    font-size: 400%;
+}
+
+.sbhw body {
+   background-color: #212121;
+}
+
+.sbhw button {
+   width:  72px;
+   height: 72px;
+   margin: 15%;
+   margin-bottom: 5%;
+   font-size: 200%;
 }
