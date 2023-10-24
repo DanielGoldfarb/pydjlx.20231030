@@ -39,6 +39,27 @@ class HelloWorldWidget extends Widget {
   }
 }
 
+class SideBarHelloWidget extends Widget {
+  constructor() {
+    super();
+    this.id = 'sidebar-hello';
+    this.title.label = 'Hello World';
+    this.title.closable = true;
+    this.addClass('sbhw');
+    let body = document.createElement('body');
+    let b1 = document.createElement('button');
+    let b2 = document.createElement('button');
+    let b3 = document.createElement('button');
+    let b4 = document.createElement('button');
+    b1.innerText = 'E';
+    b2.innerText = 'F';
+    b3.innerText = 'G';
+    b4.innerText = 'H';
+    body.append(b1,b2,b3,b4);
+    this.node.appendChild(body);
+  }
+}
+    
 function _activate(app:     JupyterFrontEnd,
                    palette: ICommandPalette,
                    launcher: ILauncher|null ) {
@@ -64,6 +85,9 @@ function _activate(app:     JupyterFrontEnd,
     console.log('ILauncher is not available');
   }
 
+  let sbwidget = new SideBarHelloWidget();
+  app.shell.add(sbwidget,'left');
+  app.shell.activateById(sbwidget.id);
 }
 
 function say_hello(app: JupyterFrontEnd, args: any) {
